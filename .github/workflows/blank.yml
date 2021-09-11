@@ -32,11 +32,12 @@ jobs:
         npm install
         hexo generate
 
-    - name: Deploy static to Tencent CloudBase
-      id: deployStatic
-      uses: TencentCloudBase/cloudbase-action@v1.1.1
-      with:
-        secretId: ${{ secrets.APIKEYID }}
-        secretKey: ${{ secrets.APIKEY }}
-        envId: fzy123-14df6e
-        staticSrcPath: public
+    - name: Deploy to Server
+      uses: easingthemes/ssh-deploy@main
+      env:
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          ARGS: "-rltgoDzvO --delete"
+          SOURCE: "public/"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
