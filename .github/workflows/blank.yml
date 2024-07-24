@@ -31,12 +31,15 @@ jobs:
         npm i -g @cloudbase/cli
         npm install
         hexo generate
-        
-  deploy:
 
-    - name: Deploy to Server
-      uses: easingthemes/ssh-deploy@v2.1.1
-      env:
+   deploy:
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
+
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@v2.1.1
+        env:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           ARGS: "-rltgoDzvO --delete"
           SOURCE: "public/"
@@ -44,9 +47,9 @@ jobs:
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.REMOTE_TARGET }}
 
-    - name: Deploy to Server1
-      uses: easingthemes/ssh-deploy@v2.1.1
-      env:
+      - name: Deploy to Server1
+        uses: easingthemes/ssh-deploy@v2.1.1
+        env:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           ARGS: "-rltgoDzvO --delete"
           SOURCE: "public/"
