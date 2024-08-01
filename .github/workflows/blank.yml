@@ -32,10 +32,6 @@ jobs:
           npm install
           hexo generate
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: [build]
-    steps:
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@v5.1.0
         env:
