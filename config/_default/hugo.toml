@@ -4,7 +4,7 @@
 # -------------------------------------------------------------------------------------
 
 title = "简单一点就好le的博客"
-baseURL = "https://example.org/"
+baseURL = "https://www.sleepan.com/"
 # theme = "FixIt"
 defaultContentLanguage = "zh-cn"
 languageCode = "zh-cn"
